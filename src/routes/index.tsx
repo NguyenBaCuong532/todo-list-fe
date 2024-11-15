@@ -1,7 +1,7 @@
-import Homepage from '../pages/user/Homepage'
+import Homepage from '../pages/HomePage'
 import Layout from '../components/Layout'
 import { ROUTES } from '../config/constant'
-import Todo from '../pages/user/Todo'
+import Todo from '../pages/Todo'
 import { Route, Routes } from 'react-router-dom'
 
 export const UserRouter = () => {

@@ -7,7 +7,6 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  console.log(123)
   return (
     <div>
       <Header />
