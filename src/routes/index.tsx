@@ -3,11 +3,14 @@ import Layout from '../components/Layout'
 import { ROUTES } from '../config/constant'
 import Todo from '../pages/Todo'
 import { Route, Routes } from 'react-router-dom'
+import LoginPage from '../pages/auth/LoginPage'
 
 export const UserRouter = () => {
   const Routers = [
     { path: ROUTES.HOME, component: <Homepage /> },
-    { path: ROUTES.TODO_CONTENT, component: <Todo /> }
+    { path: ROUTES.TODO_CONTENT, component: <Todo /> },
+    { path: ROUTES.LOGIN, component: <LoginPage /> }
+
   ]
   return (
     <Layout>

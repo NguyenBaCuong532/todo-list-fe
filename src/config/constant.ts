@@ -2,5 +2,6 @@
 
 export const ROUTES = {
   HOME: '',
-  TODO_CONTENT: 'todo'
+  TODO_CONTENT: 'todo',
+  LOGIN: 'login'
 }
