@@ -1,0 +1,108 @@
+.form-login {
+  width: 36%;
+  padding: 20px;
+  margin: 20px auto;
+  height: 500px;
+  border: 2px solid #1cbaee;
+  background: transparent;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.title-login {
+  text-align: center;
+  font-size: 30px;
+
+}
+.address{
+  text-align: center;
+  margin-top: 15px;
+}
+.input-login {
+  position: relative;
+  width: 450px;
+  display: flex;
+  justify-content: center;
+
+
+
+}
+
+.input-login label {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #333;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: .5s;
+
+}
+
+.input-login .input-group_login {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  color: #44a7f8;
+  padding: 0 10px;
+  background: transparent;
+  border: 1px solid #44a7f8;
+  outline: none;
+  border-radius: 5px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.input-login .input-group_login:focus~label,
+.input-login .input-group_login:valid~label {
+  top: 15px;
+  left: -3px;
+  font-size: 14px;
+  background: #fff;
+  color: #44a7f8;
+
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  margin-top: 40px;
+}
+
+.btn-login {
+  margin: 20px auto;
+  width: 150px;
+  height: 40PX;
+  background: transparent;
+  border: 2px solid #44a7f8;
+  font-size: 20px;
+  letter-spacing: 1px;
+  transition: all .3s;
+  border-radius: 4px;
+
+}
+
+.btn-login:hover {
+  box-shadow: 0px 13px 40px #1cbaee;
+  transition: all .3s;
+  background: #1cbaee;
+  font-size: 19px;
+  cursor: pointer;
+
+
+
+
+}
+.icon{
+  position: absolute;
+  right: 9px;
+  bottom: 24px;
+  
+}
+.icon{
+cursor: pointer;
+}

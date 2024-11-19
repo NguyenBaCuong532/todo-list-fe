@@ -1,0 +1,165 @@
+.todo-content {
+  width: 50%;
+  height: 500px;
+  margin: 10px auto;
+
+}
+
+.title {
+  text-align: center;
+  padding: 10px 0;
+
+}
+/* search */
+
+
+.input-group {
+  position: relative;
+  width: 595px;
+  margin: 0 20px;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #333;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: .5s;
+
+}
+
+.input-group input {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  color: #44a7f8;
+  padding: 0 10px;
+  background: transparent;
+  border: 1px solid #44a7f8;
+  outline: none;
+  border-radius: 5px;
+}
+
+.input-group input:focus~label,
+.input-group input:valid~label {
+  top: -5px;
+  left: -3px;
+  font-size: 14px;
+  background: #fff;
+  color: #44a7f8;
+
+}
+
+
+
+
+
+
+.btn-search {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: #44a7f8;
+  width: 40px;
+  height: 40px;
+  transition: all .3s;
+
+}
+
+.btn-search:hover,
+.theme:hover,
+.filter:hover {
+  cursor: pointer;
+  color: #f5f507;
+  transition: all .3s;
+
+}
+
+.search {
+  width: 600px;
+  letter-spacing: 1px;
+}
+
+.todo-header {
+  width: 780px;
+  display: flex;
+}
+
+.filter {
+  width: 110px;
+  height: 37px;
+  border-radius: 8px;
+  background: #44a7f8;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  margin: 0 16px;
+
+}
+
+.theme {
+  color: #fff;
+  background: #44a7f8;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: none;
+  transition: all .3s;
+
+}
+
+select:hover,
+select {
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding-bottom: 13px;
+}
+
+select option {
+  border: none;
+  background: transparent;
+  color: #167df4;
+  cursor: pointer;
+  border:2px solid #44a7f8;
+  padding: 0 20px;
+}
+
+.add-button {
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #44a7f8;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 660px;
+}
+.add-button p{
+  font-size: 40px;
+  font-weight: 100;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.todo-header__items {
+  padding: 10px 30px;
+  font-weight: 600;
+  height: 400px;
+  width: 500px;
+  position: relative;
+}
+
+.todo-items {
+  min-width: 540px;
+}
+.additem{
+  /* display: none; */
+}
