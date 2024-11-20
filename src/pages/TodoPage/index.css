@@ -1,17 +1,19 @@
 .todo-content {
   width: 50%;
-  height: 500px;
+  height: 100%;
+  min-height: 550px;
   margin: 10px auto;
-
+  border: 2px solid #167df4;
+  border-radius: 4px;
+  padding: 20px 25px;
 }
 
 .title {
   text-align: center;
   padding: 10px 0;
-
+  margin-top: 25px;
 }
 /* search */
-
 
 .input-group {
   position: relative;
@@ -28,8 +30,7 @@
   color: #333;
   padding: 0 5px;
   pointer-events: none;
-  transition: .5s;
-
+  transition: 0.5s;
 }
 
 .input-group input {
@@ -44,20 +45,14 @@
   border-radius: 5px;
 }
 
-.input-group input:focus~label,
-.input-group input:valid~label {
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
   top: -5px;
   left: -3px;
   font-size: 14px;
   background: #fff;
   color: #44a7f8;
-
 }
-
-
-
-
-
 
 .btn-search {
   position: absolute;
@@ -67,8 +62,7 @@
   color: #44a7f8;
   width: 40px;
   height: 40px;
-  transition: all .3s;
-
+  transition: all 0.3s;
 }
 
 .btn-search:hover,
@@ -76,8 +70,7 @@
 .filter:hover {
   cursor: pointer;
   color: #f5f507;
-  transition: all .3s;
-
+  transition: all 0.3s;
 }
 
 .search {
@@ -99,7 +92,6 @@
   color: #fff;
   padding: 10px;
   margin: 0 16px;
-
 }
 
 .theme {
@@ -109,26 +101,57 @@
   height: 38px;
   border-radius: 8px;
   border: none;
-  transition: all .3s;
-
+  transition: all 0.3s;
 }
 
-select:hover,
-select {
-  border: none;
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
-  padding-bottom: 13px;
+/* select */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 114px;
+  height: 38px;
+  margin: 0 20px;
 }
 
-select option {
-  border: none;
-  background: transparent;
-  color: #167df4;
+.dropdown-button {
+  width: 100%;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #44a7f8;
+  color: #f0f0f0;
   cursor: pointer;
-  border:2px solid #44a7f8;
-  padding: 0 20px;
+  text-align: left;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #44a7f8;
+
+  border-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
 }
 
 .add-button {
@@ -141,9 +164,9 @@ select option {
   font-size: 20px;
   cursor: pointer;
   position: absolute;
-  margin-left: 660px;
+  margin-left: 720px;
 }
-.add-button p{
+.add-button p {
   font-size: 40px;
   font-weight: 100;
   font-family: 'Courier New', Courier, monospace;
@@ -153,13 +176,34 @@ select option {
   padding: 10px 30px;
   font-weight: 600;
   height: 400px;
-  width: 500px;
+  width: 100%;
   position: relative;
 }
 
 .todo-items {
   min-width: 540px;
 }
-.additem{
-  /* display: none; */
+
+.todo-container {
+  overflow-y: auto; /* Bật cuộn theo chiều dọc */
+  border: 1px solid #ccc; /* Thêm viền để dễ phân biệt */
+  padding: 10px;
+  box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến kích thước */
+  margin-bottom: 14px;
+  border: none;
+  margin-left: 25px;
+}
+
+/* Điều chỉnh thanh cuộn (tuỳ chọn, nếu muốn) */
+.todo-container::-webkit-scrollbar {
+  width: 8px; /* Chiều rộng của thanh cuộn */
+}
+
+.todo-container::-webkit-scrollbar-thumb {
+  background: #888; /* Màu thanh cuộn */
+  border-radius: 4px;
+}
+
+.todo-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Màu thanh cuộn khi hover */
 }

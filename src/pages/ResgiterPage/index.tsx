@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { routes } from '../../config/constant'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
+import { routes } from '../../config/routes'
 
 function RegisterPage() {
   const [username, setUsername] = useState('')

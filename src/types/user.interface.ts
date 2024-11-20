@@ -5,3 +5,8 @@ export interface IUser {
   role: string
   username: string
 }
+
+export interface ITodo {
+  item: string
+  checked: boolean
+}

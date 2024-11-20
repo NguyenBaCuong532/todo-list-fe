@@ -1,33 +1,71 @@
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import SearchIcon from '@mui/icons-material/Search'
-import { useState } from 'react'
+import { useAtom } from 'jotai'
+import { useEffect, useState } from 'react'
+import AddItems from '../../features/todo/components/AddItem'
 import TodoItem from '../../features/todo/components/TodoItem'
-import { ITodo } from '../../features/todo/interfaces'
+import { todosAtom } from '../../features/todo/stores'
+import { api } from '../../utils/axios'
 import './index.css'
 function TodoPage() {
-  const [todos, setTodos] = useState<ITodo[]>([
-    { id: 1, text: 'NOTE #1', completed: false },
-    { id: 2, text: 'NOTE #2', completed: true },
-    { id: 3, text: 'NOTE #3', completed: false }
-  ])
-  const [filter, setFilter] = useState<string>('all')
+  const [todos, setTodos] = useAtom(todosAtom)
 
-  const toggleTodo = (id: number) => {
-    setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)))
+  const [error, setError] = useState<string | null>(null) // State lỗi
+  const [filter, setFilter] = useState<string>('all')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev)
   }
-  const AddItem = () => {}
+
+  //additem
+  const [isModalOpen, setModalOpen] = useState(false)
+
+  const handleOpenModal = () => setModalOpen(true)
+  const handleCloseModal = () => setModalOpen(false)
+
+  const toggleTodo = async (id: number) => {
+    setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)))
+    const checkItem = todos?.filter((todo) => todo.id === id)
+    try {
+      const response = await api.patch(`todo/${id}/item`, {
+        item: checkItem[0].item,
+        checked: !checkItem[0].checked
+      })
+      console.log('Todo Updated:', response.data)
+    } catch (error) {
+      setError(`Failed to delete todo. Error: ${error}`)
+    }
+  }
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'all') return true
-    if (filter === 'completed') return todo.completed
-    if (filter === 'incomplete') return !todo.completed
+    if (filter === 'completed') return todo.checked
+    if (filter === 'incomplete') return !todo.checked
     return true
   })
+  console.log(todos)
+
+  // Hàm lấy Todo list từ API
+  const fetchTodos = async () => {
+    try {
+      const response = await api.get(`/todo/me`)
+      setTodos(response.data)
+    } catch (err) {
+      setError(`Failed to fetch todos.Error :${err}`)
+    }
+  }
+
+  // Dùng useEffect để gọi API khi component được mount
+  useEffect(() => {
+    ;(async () => await fetchTodos())()
+  }, [])
+
   return (
     <>
       <h1 className='title'>ToDo List</h1>
-      <div className='todo-content'>
-        <div className='todo-header'>
+      <div className='todo-content '>
+        <div className='todo-header '>
           <div className='input-group'>
             <input className='todo-header_search' type='text' name='search' required />
             <label htmlFor='search'>Search note ...</label>
@@ -35,36 +73,81 @@ function TodoPage() {
               <SearchIcon />
             </button>
           </div>
-          <div className='filter'>
-            <select value={filter} onChange={(e) => setFilter(e.target.value)} className='filter-select'>
-              <option value='all'>All</option>
-              <option value='completed'>Complete</option>
-              <option value='incomplete'>Incomplete</option>
-            </select>
+          <div className='custom-dropdown'>
+            <button id='filler-option' onClick={() => toggleDropdown()} className='dropdown-button'>
+              {filter === 'all' ? 'ALL' : filter === 'completed' ? 'Complete' : 'Incomplete'}
+            </button>
+            {isDropdownOpen ? (
+              <>
+                <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`}>
+                  <li
+                    onClick={() => {
+                      setIsDropdownOpen(false)
+                      setFilter('all')
+                    }}
+                    data-value='all'
+                  >
+                    ALL
+                  </li>
+                  <li
+                    onClick={() => {
+                      setIsDropdownOpen(false)
+                      setFilter('completed')
+                    }}
+                    data-value='completed'
+                  >
+                    Complete
+                  </li>
+                  <li
+                    onClick={() => {
+                      setFilter('incomplete')
+                      setIsDropdownOpen(false)
+                    }}
+                    data-value='incomplete'
+                  >
+                    Incomplete
+                  </li>
+                </ul>
+              </>
+            ) : (
+              ''
+            )}
           </div>
           <button className='theme'>
             <DarkModeIcon />
           </button>
         </div>
-        <div className='todo-header todo-header__items'>
+        <div className='todo-header todo-header__items todo-container'>
           <div className='todo-items'>
-            {filteredTodos.length != 0
-              ? filteredTodos.map((todo) => (
+            {error && <p style={{ color: 'red' }}>ERROR:{error}</p>}
+            {!error ? (
+              todos.length != 0 ? (
+                filteredTodos.map((todo) => (
                   <TodoItem
                     key={todo.id}
                     id={todo.id}
-                    text={todo.text}
-                    completed={todo.completed}
+                    text={todo.item}
+                    completed={todo.checked}
                     onToggle={toggleTodo}
                   />
                 ))
-              : 'Add your first Todo'}
+              ) : (
+                <>
+                  <div className='no-todo-item'>
+                    <img className='' src='/src/assets/image/add-first.jpg' alt='' width={'250px'} height={'280px'} />
+                  </div>
+                  <p style={{ textAlign: 'center', fontSize: '30px' }}> Add your first Todo</p>
+                </>
+              )
+            ) : (
+              ''
+            )}
           </div>
         </div>
-        <button className='add-button' onClick={AddItem}>
+        <button className='add-button' onClick={handleOpenModal}>
           <p>+</p>
         </button>
-        <div className='additem'>1234</div>
+        <AddItems isOpen={isModalOpen} onClose={handleCloseModal} />
       </div>
     </>
   )

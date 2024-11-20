@@ -4,22 +4,26 @@ import { useSetAtom } from 'jotai'
 import cookies from 'js-cookie'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { API_URL, routes } from '../../config/constant'
+import { API_URL } from '../../config/constant'
+import { routes } from '../../config/routes'
 import { userAtom } from '../../features/auth/stores'
+import { api } from '../../utils/axios'
 import './index.css'
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [check, setCheck] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [check, setCheck] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  // const [cookies, setCookie] = useCookies(['auth'])
+  console.log({ cookies })
+  console.log(cookies.get('auth'))
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
 
-  const setUser = useSetAtom(userAtom) // Truy cập hàm cập nhật atom
+  const setUser = useSetAtom(userAtom)
   const navigate = useNavigate()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -39,10 +43,10 @@ const LoginPage = () => {
         sameSite: 'Strict',
         path: '/'
       })
+
       sessionStorage.setItem('auth', JSON.stringify(token))
 
-      axios.defaults.withCredentials = true // Cho phép gửi cookie trong request
-      const userResponse = await axios.get(`${API_URL}/users`)
+      const userResponse = await api.get(`/users/me`)
 
       console.log('Danh sách người dùng:', userResponse.data)
       setUser(userResponse.data) // Cập nhật trạng thái người dùng

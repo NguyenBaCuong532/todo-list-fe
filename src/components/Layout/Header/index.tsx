@@ -1,9 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom'
 import { useAtom } from 'jotai'
 import Cookies from 'js-cookie'
+import { Link, useNavigate } from 'react-router-dom'
+import { routes } from '../../../config/routes'
 import { userAtom } from '../../../features/auth/stores'
-import './index.css'
 import { IUser } from '../../../types/user.interface'
+import './index.css'
 
 const Header = () => {
   const [user, setUser] = useAtom<IUser | null>(userAtom)
@@ -19,7 +20,7 @@ const Header = () => {
   return (
     <header>
       <div className='header-detail'>
-        <Link to='/'>
+        <Link to={routes.HOME}>
           <img className='header_logo' src='/src/assets/image/log-minions.jpg' alt='' />
         </Link>
         {user ? (
