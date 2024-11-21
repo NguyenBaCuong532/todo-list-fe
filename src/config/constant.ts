@@ -1,6 +1,1 @@
-// export const ABC='abc';
-
-export const ROUTES = {
-  HOME: '',
-  TODO_CONTENT: 'todo'
-}
+export const API_URL = 'http://localhost:4000'

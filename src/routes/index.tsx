@@ -1,20 +1,34 @@
-import Homepage from '../pages/HomePage'
-import Layout from '../components/Layout'
-import { ROUTES } from '../config/constant'
-import Todo from '../pages/Todo'
+import { useAtom } from 'jotai'
 import { Route, Routes } from 'react-router-dom'
+import Layout from '../components/Layout'
+import { ProtectedRoute } from '../components/ProtectedRoute'
+import { ROUTERS } from '../config/routes'
+import { userAtom } from '../features/auth/stores'
 
-export const UserRouter = () => {
-  const Routers = [
-    { path: ROUTES.HOME, component: <Homepage /> },
-    { path: ROUTES.TODO_CONTENT, component: <Todo /> }
-  ]
+export const Router = () => {
+  const [user] = useAtom(userAtom)
+  console.log({user})
   return (
     <Layout>
       <Routes>
-        {Routers.map((route, index) => (
-          <Route key={index} path={route.path} element={route.component} />
-        ))}
+        {ROUTERS.map((route, index) => {
+          const RouteComponent = route.component
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                route.isProtected ? (
+                  <ProtectedRoute user={user}>
+                    <RouteComponent />
+                  </ProtectedRoute>
+                ) : (
+                  <RouteComponent />
+                )
+              }
+            />
+          )
+        })}
       </Routes>
     </Layout>
   )

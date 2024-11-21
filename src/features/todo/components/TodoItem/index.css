@@ -1,0 +1,41 @@
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  width: 100%;
+}
+.no-todo-item{
+  display: flex;
+justify-content: center;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.todo-text {
+  margin-left: 8px;
+  font-size: 16px;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+}
+.option {
+}
+.option_edit {
+  color: rgb(252, 24, 108);
+}
+.option_del {
+  color: rgb(80, 79, 79);
+  margin-left: 20px;
+}
+.option_edit:hover,
+.option_del:hover {
+  cursor:pointer;
+  opacity: .6;
+}
+

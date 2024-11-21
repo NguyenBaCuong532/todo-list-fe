@@ -1,0 +1,111 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  height: 289px;
+  text-align: center;
+  position: relative;
+  z-index: 1000;
+
+}
+.new-item{
+  margin: 20px 0;
+
+}
+.new-item input{
+    width: 440px;
+    height: 38px;
+    border-radius: 4px;
+    margin-bottom: 90px;
+    padding: 0 10px;
+    border: 2px solid #19c6f1;
+    color: #19c6f1;
+    outline: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    transition: .3s ease-in;
+}
+.new-item input:focus{
+  padding-left: 15px;
+  transition: .3s ease-out;
+  font-size: 17px;
+
+}
+.bgr{
+  opacity: .3;
+  z-index: -1;
+  width: 500px;
+  height: 289px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 4px;
+}
+
+.close-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  width: 110px;
+  height: 38px;
+  background-color: transparent;
+  border: 2px solid #f43649;
+  color: #f43649;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  transition: all .3s;
+
+
+
+}
+.apply-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  width: 110px;
+  height: 38px;
+  background-color: transparent;
+  border: 2px solid #66eb45;
+  color: #66eb45;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  transition: all .3s;
+
+}
+.apply-button:hover{
+  background-color: #66eb45;
+  color: #fff;
+  transition: all .3s;
+
+
+
+}
+.close-button:hover{
+  background-color: #f43649;
+  color: #fff;
+  transition: all .3s;
+
+
+
+}
+.option{
+  display: flex;
+  justify-content: space-between;
+}
