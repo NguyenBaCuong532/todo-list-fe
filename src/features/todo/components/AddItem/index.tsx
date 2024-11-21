@@ -9,7 +9,7 @@ interface AddModal {
 }
 const AddItems: React.FC<AddModal> = ({ isOpen, onClose }) => {
   const [addItem, setAddItem] = useState<string>('')
-  const [todos, setTodos] = useAtom(todosAtom)
+  const [, setTodos] = useAtom(todosAtom)
   const [error, setError] = useState<string | null>(null)
   if (!isOpen) return null
   const createTodo = async (addItem: string) => {
@@ -62,7 +62,9 @@ const AddItems: React.FC<AddModal> = ({ isOpen, onClose }) => {
             <button onClick={onClose} className='close-button'>
               Cancel
             </button>
-            <button type='submit' className='apply-button'>Apply</button>
+            <button type='submit' className='apply-button'>
+              Apply
+            </button>
           </div>
         </form>
       </div>

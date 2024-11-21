@@ -1,20 +1,40 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import { routes } from '../../config/routes'
+import { api } from '../../utils/axios'
 
 function RegisterPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [check, setCheck] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [fullname, setFullname] = useState('')
+  const [, setError] = useState<string | null>(null)
   const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate()
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
+  const createTodo = async (username: string, password: string, fullname: string) => {
+    try {
+      const response = await api.post(`/auth/signup`, {
+        username: username,
+        password: password,
+        fullname: fullname
+      })
+      if (response.data) {
+        console.log('Todo created:', response.data)
+      }
+    } catch (error) {
+      setError(`Failed to fetch todos. Error: ${error}`)
+    }
+  }
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    await createTodo(username, password, fullname)
+    navigate('/login')
   }
 
   return (
@@ -27,11 +47,11 @@ function RegisterPage() {
               className='input-group_login'
               type='text'
               id='fullname'
-              value={username}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+              value={fullname}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setFullname(e.target.value)}
               required
             />
-            <label htmlFor='username'>Fullname</label>
+            <label htmlFor='fullname'>Fullname</label>
           </div>
           <div className='input-login'>
             <input
@@ -60,11 +80,10 @@ function RegisterPage() {
               {showPassword ? '👁️' : '🙈'}
             </p>
             <label htmlFor='password'>Password</label>
-            <p>{check ? 'Tài khoản hoặc mật khẩu không chính xác!' : ''}</p>
           </div>
           <div className='btn'>
-            <button className='btn-login' type='submit' disabled={loading}>
-              {loading ? 'Registering in...' : 'Register'}
+            <button className='btn-login' type='submit'>
+              Register
             </button>
           </div>
           <p className='address'>

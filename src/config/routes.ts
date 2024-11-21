@@ -3,7 +3,7 @@ import RegisterPage from '../pages/ResgiterPage'
 import TodoPage from '../pages/TodoPage'
 
 export const routes = {
-  HOME: 'todo',
+  HOME: '/',
   TODO_CONTENT: 'todo',
   REGISTER: 'register',
   LOGIN: 'login'

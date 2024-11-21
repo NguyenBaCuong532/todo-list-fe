@@ -7,6 +7,7 @@ import { userAtom } from '../features/auth/stores'
 
 export const Router = () => {
   const [user] = useAtom(userAtom)
+  console.log({user})
   return (
     <Layout>
       <Routes>

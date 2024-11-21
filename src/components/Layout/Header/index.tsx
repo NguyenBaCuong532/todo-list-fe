@@ -14,7 +14,7 @@ const Header = () => {
     setUser(null)
     Cookies.remove('auth')
     sessionStorage.removeItem('auth')
-    navigate('/')
+    navigate('/login')
   }
 
   return (

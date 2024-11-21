@@ -1,6 +1,6 @@
 export interface IUser {
   fullname: string
-  id: number
+  id: number | undefined
   password: string
   role: string
   username: string

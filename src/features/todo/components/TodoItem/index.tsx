@@ -52,15 +52,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, completed, onToggle }) =>
       const response = await api.delete(`todo/${id}/item`)
       console.log('Todo deleted:', response.data)
       if (response.data) {
-        console.log('Todo created:', response.data)
-
         setTodos((prevTodos) => [...prevTodos].filter((todo) => todo.id !== id))
       }
     } catch (error) {
       setError(`Failed to delete todo. Error: ${error}`)
     }
   }
-  console.log(completed)
 
   return (
     <div className={`todo-item  ${completed ? 'completed' : ''}`}>

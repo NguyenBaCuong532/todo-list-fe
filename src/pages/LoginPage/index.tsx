@@ -14,11 +14,9 @@ const LoginPage = () => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [check, setCheck] = useState<boolean>(false)
-  const [loading, setLoading] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState<boolean>(false)
   // const [cookies, setCookie] = useCookies(['auth'])
-  console.log({ cookies })
-  console.log(cookies.get('auth'))
+  // console.log(cookies.get('auth'))
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
@@ -28,7 +26,6 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
 
     try {
       const loginResponse = await axios.post(`${API_URL}/auth/login`, {
@@ -55,8 +52,6 @@ const LoginPage = () => {
     } catch (error) {
       console.error('Lỗi:', error)
       setCheck(true)
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -95,8 +90,8 @@ const LoginPage = () => {
         <p className=' relative h-1'>{check ? 'Tài khoản hoặc mật khẩu không chính xác!' : ''}</p>
 
         <div className='btn'>
-          <button className='btn-login' type='submit' disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+          <button className='btn-login' type='submit'>
+            Login
           </button>
         </div>
 
